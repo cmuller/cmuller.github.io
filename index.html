@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Cmuller.github.io by cmuller</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Cmuller.github.io</h1>
+        <h2>How to use Mercurial with a Github repository</h2>
+        <a href="https://github.com/cmuller" class="button"><small>Follow me on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>Using github</h1>
+
+<p>Please find some information below on Github usage.</p>
+
+<p>For the rest, the <a href="https://help.github.com/categories/54/articles">Github bootstrap articles</a> are nice and helpful :-)</p>
+
+<h2>How to use Mercurial with a Github repository</h2>
+
+<p>You do not need to have Git installed in order to commit and push your changes back to Github. You will need Mercurial, obviously, and also the <em>Dulwhich</em> Python library and the <em>hg-git</em> extension; which installations are covered in the first step below. Once the extension has been enabled, the rest is pretty straightforward for Mercurial users: clone, commit and push as usual.</p>
+
+<h3>download and install hg-git</h3>
+
+<div class="highlight"><pre><span class="nv">$ </span>mkdir -p <span class="nv">$HOME</span>/.hgext
+<span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$HOME</span>/.hgext
+<span class="nv">$ </span>wget http://www.samba.org/~jelmer/dulwich/dulwich-0.8.7.tar.gz
+<span class="nv">$ </span>tar zxvf dulwich-0.8.7.tar.gz
+<span class="nv">$ </span>rm dulwich-0.8.7.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>dulwich-0.8.7
+<span class="nv">$ </span>./setup.py build
+<span class="nv">$ </span>sudo ./setup.py install
+<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for </span>cmuller: 
+running install
+<span class="o">[</span>...<span class="o">]</span>
+<span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$HOME</span>/.hgext
+<span class="nv">$ </span>hg clone https://bitbucket.org/durin42/hg-git
+<span class="nv">$ </span><span class="nb">cd </span>hg-git/
+<span class="nv">$ </span>hg update -C <span class="s1">'max(tagged())'</span>
+</pre></div>
+
+<h3>enable the hg-git extension in $HOME/.hgrc</h3>
+
+<div class="highlight"><pre><span class="o">[</span>extensions<span class="o">]</span>
+hg-git <span class="o">=</span> <span class="nv">$HOME</span>/.hgext/hg-git/hggit
+</pre></div>
+
+<h3>clone the repository using Mercurial</h3>
+
+<div class="highlight"><pre><span class="nv">$ </span>hg clone git+ssh://git@github.com:cmuller/test.git
+<span class="nv">$ </span><span class="nb">cd test</span>
+<span class="nv">$ </span>hg branch
+default
+<span class="nv">$ </span>hg bookmark
+ * master                    1:0b48f2edc3f7
+<span class="nv">$ </span>hg pull -u
+pulling from git+ssh://git@github.com:cmuller/test.git
+<span class="o">[</span><span class="s2">"git-upload-pack 'cmuller/test.git'"</span><span class="o">]</span>
+no changes found
+</pre></div>
+
+<h3>commit some changes</h3>
+
+<div class="highlight"><pre><span class="nv">$ </span>vi README.md 
+<span class="nv">$ </span>hg status
+M README.md
+<span class="nv">$ </span>hg commit -m<span class="s2">"test of commit using hg"</span>
+<span class="nv">$ </span>hg status
+<span class="nv">$ </span>hg outgoing
+comparing with git+ssh://git@github.com:cmuller/test.git
+<span class="o">[</span><span class="s2">"git-receive-pack 'cmuller/test.git'"</span><span class="o">]</span>
+searching <span class="k">for </span>changes
+changeset:   2:2ee128a7362a
+bookmark:    master
+tag:         tip
+user:        Christophe Muller &lt;...&gt;
+date:        <span class="o">[</span>...<span class="o">]</span>
+summary:     <span class="nb">test </span>of commit using hg
+</pre></div>
+
+<h3>push your changes back to Github</h3>
+
+<div class="highlight"><pre><span class="nv">$ </span>hg push
+pushing to git+ssh://git@github.com:cmuller/test.git
+searching <span class="k">for </span>changes
+<span class="o">[</span><span class="s2">"git-receive-pack 'cmuller/test.git'"</span><span class="o">]</span>
+</pre></div>
+
+<p>Notes:</p>
+
+<ol>
+<li>it works. see <a href="https://github.com/cmuller/test/commit/a0b9ae9aa49118a915f1784894967f8e938ccf9e">https://github.com/cmuller/test/commit/a0b9ae9aa49118a915f1784894967f8e938ccf9e</a> :-)</li>
+<li>it is interoperable with the usage of Git on the same repository. E.g.,</li>
+</ol><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /tmp
+<span class="nv">$ </span>git clone git@github.com:cmuller/test.git
+<span class="nv">$ </span><span class="nb">cd test</span>
+<span class="nv">$ </span>git branch
+* master
+<span class="nv">$ </span>git show HEAD
+commit a0b9ae9aa49118a915f1784894967f8e938ccf9e
+Author: Christophe Muller &lt;...&gt;
+Date:   <span class="o">[</span>...<span class="o">]</span>
+    <span class="nb">test </span>of commit using hg
+<span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+        </section>
+
+        <aside id="sidebar">
+
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
