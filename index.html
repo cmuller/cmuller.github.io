@@ -20,7 +20,7 @@
     <header>
       <div class="inner">
         <h1>Dev Tools</h1>
-        <h2>About Mercurial and Github (for the time being)</h2>
+        <h2>About Mercurial, Git, and Github</h2>
         <a href="https://github.com/cmuller" class="button"><small>Follow me on</small>GitHub</a>
       </div>
     </header>
@@ -28,13 +28,19 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h1>Using github</h1>
+          <p>I have gathered in this page my notes on using <em>Github</em>, <em>Mercurial with Github</em>, and <em>Git</em> (outside of Github) but from a Mercurial user point of view, and also from a lover-of-simplicity point of view :-).</p>
+
+<p>In case of mistakes, please do not hesitate to use the current project issues to report them by simply <a href="https://github.com/cmuller/cmuller.github.io/issues/new">creating a new issue</a> on this project.</p>
+
+<h1>
+<a name="using-github" class="anchor" href="#using-github"><span class="octicon octicon-link"></span></a>Using github</h1>
 
 <p>Please find some information below on Github usage.</p>
 
-<p>For what is not described below, the <a href="https://help.github.com/categories/54/articles">Github bootstrap articles</a> are nice and helpful :-)</p>
+<p>Github is very well documented and for what is not described below, chances are the <a href="https://help.github.com/categories/54/articles">Github bootstrap articles</a> will be helpful.</p>
 
-<h2>How to create static pages</h2>
+<h2>
+<a name="how-to-create-static-pages" class="anchor" href="#how-to-create-static-pages"><span class="octicon octicon-link"></span></a>How to create static pages</h2>
 
 <p>To create "pages", see <a href="https://help.github.com/articles/creating-pages-with-the-automatic-generator">https://help.github.com/articles/creating-pages-with-the-automatic-generator</a> (a bootstrap kind of doc).</p>
 
@@ -44,11 +50,13 @@
 <li>organizations,</li>
 <li>persons,</li>
 <li>projects (repositories)</li>
-</ul><h2>How to use Mercurial with a Github repository</h2>
+</ul><h2>
+<a name="how-to-use-mercurial-with-a-github-repository" class="anchor" href="#how-to-use-mercurial-with-a-github-repository"><span class="octicon octicon-link"></span></a>How to use Mercurial with a Github repository</h2>
 
 <p>You do not need to have Git installed in order to commit and push your changes back to Github. You will need Mercurial, obviously, and also the <em>Dulwhich</em> Python library and the <em>hg-git</em> extension; which installations are covered in the first step below. Once the extension has been enabled, the rest is pretty straightforward for Mercurial users: clone, commit and push as usual.</p>
 
-<h3>download and install hg-git</h3>
+<h3>
+<a name="download-and-install-hg-git" class="anchor" href="#download-and-install-hg-git"><span class="octicon octicon-link"></span></a>download and install hg-git</h3>
 
 <div class="highlight"><pre><span class="nv">$ </span>mkdir -p <span class="nv">$HOME</span>/.hgext
 <span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$HOME</span>/.hgext
@@ -67,13 +75,15 @@ running install
 <span class="nv">$ </span>hg update -C <span class="s1">'max(tagged())'</span>
 </pre></div>
 
-<h3>enable the hg-git extension in $HOME/.hgrc</h3>
+<h3>
+<a name="enable-the-hg-git-extension-in-homehgrc" class="anchor" href="#enable-the-hg-git-extension-in-homehgrc"><span class="octicon octicon-link"></span></a>enable the hg-git extension in $HOME/.hgrc</h3>
 
 <div class="highlight"><pre><span class="o">[</span>extensions<span class="o">]</span>
 hg-git <span class="o">=</span> <span class="nv">$HOME</span>/.hgext/hg-git/hggit
 </pre></div>
 
-<h3>clone the repository using Mercurial</h3>
+<h3>
+<a name="clone-the-repository-using-mercurial" class="anchor" href="#clone-the-repository-using-mercurial"><span class="octicon octicon-link"></span></a>clone the repository using Mercurial</h3>
 
 <div class="highlight"><pre><span class="nv">$ </span>hg clone git+ssh://git@github.com:cmuller/test.git
 <span class="nv">$ </span><span class="nb">cd test</span>
@@ -87,7 +97,8 @@ pulling from git+ssh://git@github.com:cmuller/test.git
 no changes found
 </pre></div>
 
-<h3>commit some changes</h3>
+<h3>
+<a name="commit-some-changes" class="anchor" href="#commit-some-changes"><span class="octicon octicon-link"></span></a>commit some changes</h3>
 
 <div class="highlight"><pre><span class="nv">$ </span>vi README.md 
 <span class="nv">$ </span>hg status
@@ -106,7 +117,8 @@ date:        <span class="o">[</span>...<span class="o">]</span>
 summary:     <span class="nb">test </span>of commit using hg
 </pre></div>
 
-<h3>push your changes back to Github</h3>
+<h3>
+<a name="push-your-changes-back-to-github" class="anchor" href="#push-your-changes-back-to-github"><span class="octicon octicon-link"></span></a>push your changes back to Github</h3>
 
 <div class="highlight"><pre><span class="nv">$ </span>hg push
 pushing to git+ssh://git@github.com:cmuller/test.git
@@ -131,6 +143,100 @@ Date:   <span class="o">[</span>...<span class="o">]</span>
     <span class="nb">test </span>of commit using hg
 <span class="o">[</span>...<span class="o">]</span>
 </pre></div>
+
+<h1>
+<a name="using-git" class="anchor" href="#using-git"><span class="octicon octicon-link"></span></a>Using git</h1>
+
+<p>This is my cheatsheet for using git, with a few links to tutorials that I found useful.</p>
+
+<h2>
+<a name="some-git-equivalent-to-hg-commands" class="anchor" href="#some-git-equivalent-to-hg-commands"><span class="octicon octicon-link"></span></a>Some Git equivalent to Hg commands</h2>
+
+<p>This is my cheatsheet. A complete list exist <a href="http://mercurial.selenic.com/wiki/GitConcepts#Command_equivalence_table">in the mercurial wiki</a> that you might want to check in addition with the explanations on the deep differences (e.g., on branches). I advocate using only default in mercurial and master in git :-) so I won't get into these details. As for the equivalences, I have put below mostly what I use every day, so this is not an exhaustive list.</p>
+
+<h3>
+<a name="help" class="anchor" href="#help"><span class="octicon octicon-link"></span></a>help</h3>
+
+<p><code>hg help</code> -&gt; <code>git help</code></p>
+
+<p>In hg you basically need to know that the concept you are looking for exists or is implemented by an extension; after that, <code>hg help</code>, 99% of the time, is enough and provides you with the information you need. On the other hand with git it is probably better to know beforehand what to do and only spend time in <code>git help</code> at the very last resort, i.e., after google, SO, etc.</p>
+
+<h3>
+<a name="basic-commands" class="anchor" href="#basic-commands"><span class="octicon octicon-link"></span></a>basic commands</h3>
+
+<p><code>hg init</code> -&gt; <code>git init</code></p>
+
+<p><code>hg clone</code> -&gt; <code>git clone</code></p>
+
+<p><code>hg add</code> -&gt; <code>git add</code></p>
+
+<p><code>hg commit</code> -&gt; <code>git commit -a</code></p>
+
+<p><code>hg update -u</code> -&gt; <code>git pull</code></p>
+
+<p><code>hg push</code> -&gt; <code>git push</code></p>
+
+<p>Not much differences here except the use of the staging area in git (you need to do <code>git add</code> before <code>git commit</code> or use the <code>-a</code> option) and the git pull which on the other hand does what we want in a single command.</p>
+
+<h3>
+<a name="displaying-information" class="anchor" href="#displaying-information"><span class="octicon octicon-link"></span></a>displaying information</h3>
+
+<p><code>hg paths</code> -&gt; <code>git remote -v</code></p>
+
+<p><code>hg status</code> -&gt; <code>git status</code></p>
+
+<p><code>hg diff</code> -&gt; <code>git diff</code></p>
+
+<p><code>hg id</code> -&gt; <code>git rev-parse --verify --short HEAD</code></p>
+
+<p><code>hg tip -p</code> -&gt; <code>git show</code></p>
+
+<p><code>hg log -r 112 -p</code> -&gt; <code>git show 2a0867...</code></p>
+
+<p>Note that if a <code>git add</code> has already been performed on the modified file, the modification has moved to the staging area, so <code>git diff --cached</code> should be used in order to see it. The <code>git show</code> command is quite nice and easy to use. On the contrary if you really need to often get the current id, you'd better create an alias for that..</p>
+
+<h3>
+<a name="more-complex-dangerous-commands" class="anchor" href="#more-complex-dangerous-commands"><span class="octicon octicon-link"></span></a>more complex (dangerous) commands</h3>
+
+<p><code>hg update -C</code> -&gt; <code>git checkout --force</code></p>
+
+<p><code>hg revert</code> -&gt; <code>git reset --hard</code></p>
+
+<p><code>hg backout</code> -&gt; <code>git revert</code></p>
+
+<p>Please note that revert commands are completely different here and check before using!</p>
+
+<h3>
+<a name="local-server" class="anchor" href="#local-server"><span class="octicon octicon-link"></span></a>local server</h3>
+
+<p><code>hg serve</code> -&gt; <code>git daemon --reuseaddr --base-path=. --export-all --verbose</code></p>
+
+<p>Once <code>hg serve</code> is launched, a local server is started from which it is possible to clone, pull, push, etc. (using http protocol). Similarly with the above git command, a local server is started and it is possible to clone using the git protocol, e.g.,</p>
+
+<p><code>git clone git://&lt;ip-address&gt;/.git project</code></p>
+
+<h2>
+<a name="my-git-faq" class="anchor" href="#my-git-faq"><span class="octicon octicon-link"></span></a>My git FAQ</h2>
+
+<p>To be continued...</p>
+
+<h3>
+<a name="how-to-create-a-new-repository-on-a-server" class="anchor" href="#how-to-create-a-new-repository-on-a-server"><span class="octicon octicon-link"></span></a>how to create a new repository on a server</h3>
+
+<p>Whereas with mercurial-server it is possible to create a repository on a server by simpy cloning from your machine to the server's URL, this is not possible with git: you have to manually at least create a directory on the server (with the right access-rights, e.g., for your group of developers) <em>init</em> it, and then push to it, e.g.,</p>
+
+<ol>
+<li>log in the server</li>
+<li><code>mkdir /var/lib/git/repo.git</code></li>
+<li><code>cd /var/lib/git/repo.git</code></li>
+<li><code>git init --bare --shared</code></li>
+<li><code>find . -type d -exec chmod 775 {} \;</code></li>
+<li><code>find . -type f -exec chmod 664 {} \;</code></li>
+<li>exit</li>
+<li>on your PC, link to the server and then push to it, e.g.,</li>
+</ol><p><code>git remote add origin ssh://&lt;server&gt;/var/lib/git/repo.git</code></p>
+
+<p><code>git push -u origin master</code></p>
         </section>
 
         <aside id="sidebar">
