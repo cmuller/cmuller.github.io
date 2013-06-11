@@ -13,14 +13,14 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>Dev Tools by cmuller</title>
+    <title>About Mercurial, Git, and Github by cmuller</title>
   </head>
 
   <body>
     <header>
       <div class="inner">
-        <h1>Dev Tools</h1>
-        <h2>About Mercurial, Git, and Github</h2>
+        <h1>About Mercurial, Git, and Github</h1>
+        <h2>Keep it Simple</h2>
         <a href="https://github.com/cmuller" class="button"><small>Follow me on</small>GitHub</a>
       </div>
     </header>
@@ -48,7 +48,7 @@
 
 <ul>
 <li>organizations,</li>
-<li>persons,</li>
+<li>persons, like this one, or</li>
 <li>projects (repositories)</li>
 </ul><h2>
 <a name="how-to-use-mercurial-with-a-github-repository" class="anchor" href="#how-to-use-mercurial-with-a-github-repository"><span class="octicon octicon-link"></span></a>How to use Mercurial with a Github repository</h2>
@@ -152,7 +152,7 @@ Date:   <span class="o">[</span>...<span class="o">]</span>
 <h2>
 <a name="some-git-equivalent-to-hg-commands" class="anchor" href="#some-git-equivalent-to-hg-commands"><span class="octicon octicon-link"></span></a>Some Git equivalent to Hg commands</h2>
 
-<p>This is my cheatsheet. A complete list exist <a href="http://mercurial.selenic.com/wiki/GitConcepts#Command_equivalence_table">in the mercurial wiki</a> that you might want to check in addition with the explanations on the deep differences (e.g., on branches). I advocate using only default in mercurial and master in git :-) so I won't get into these details. As for the equivalences, I have put below mostly what I use every day, so this is not an exhaustive list.</p>
+<p>This is my Hg to Git cheatsheet. A complete list exist <a href="http://mercurial.selenic.com/wiki/GitConcepts#Command_equivalence_table">in the mercurial wiki</a> that you might want to check in addition with the explanations on the deep differences (e.g., on branches). I advocate using only default in mercurial and master in git :-) so I won't get into these details. As for the equivalences, I have put below mostly what I use every day, so this is not an exhaustive list.</p>
 
 <h3>
 <a name="help" class="anchor" href="#help"><span class="octicon octicon-link"></span></a>help</h3>
@@ -193,6 +193,10 @@ Date:   <span class="o">[</span>...<span class="o">]</span>
 
 <p><code>hg log -r 112 -p</code> -&gt; <code>git show 2a0867...</code></p>
 
+<p><code>hg branches</code> -&gt; <code>git branch -a</code></p>
+
+<p><code>hg branch</code> -&gt; <code>git branch</code></p>
+
 <p>Note that if a <code>git add</code> has already been performed on the modified file, the modification has moved to the staging area, so <code>git diff --cached</code> should be used in order to see it. The <code>git show</code> command is quite nice and easy to use. On the contrary if you really need to often get the current id, you'd better create an alias for that..</p>
 
 <h3>
@@ -204,7 +208,7 @@ Date:   <span class="o">[</span>...<span class="o">]</span>
 
 <p><code>hg backout</code> -&gt; <code>git revert</code></p>
 
-<p>Please note that revert commands are completely different here and check before using!</p>
+<p>Please note that the <em>revert-type</em> commands are completely different between Hg and Git so please double check the documentation before using! :-)</p>
 
 <h3>
 <a name="local-server" class="anchor" href="#local-server"><span class="octicon octicon-link"></span></a>local server</h3>
@@ -216,12 +220,20 @@ Date:   <span class="o">[</span>...<span class="o">]</span>
 <p><code>git clone git://&lt;ip-address&gt;/.git project</code></p>
 
 <h2>
-<a name="my-git-faq" class="anchor" href="#my-git-faq"><span class="octicon octicon-link"></span></a>My git FAQ</h2>
-
-<p>To be continued...</p>
+<a name="some-miscellaneous-information" class="anchor" href="#some-miscellaneous-information"><span class="octicon octicon-link"></span></a>Some Miscellaneous Information</h2>
 
 <h3>
-<a name="how-to-create-a-new-repository-on-a-server" class="anchor" href="#how-to-create-a-new-repository-on-a-server"><span class="octicon octicon-link"></span></a>how to create a new repository on a server</h3>
+<a name="my-git-links" class="anchor" href="#my-git-links"><span class="octicon octicon-link"></span></a>My git links</h3>
+
+<p>There are literally hundreds of docs, tutorials, posts, manuals, books etc. on Git. That probably.. shows the need :-) Below are just two links I found useful: the first one is the very minimal survival guide (but not Mercurial-user oriented) in which you will learn what is the Index, the staging area, how to push to a central repo, how to use branches, etc. The second one is not actually git-specific, it helps you ask yourself the right question and helps you choose a workflow that suits your needs.</p>
+
+<ul>
+<li>git - the simple guide: <a href="http://rogerdudler.github.io/git-guide/">http://rogerdudler.github.io/git-guide/</a>
+</li>
+<li>Git Makes Me Angry Inside: <a href="http://www.slideshare.net/emmajane/git-makes-me-angry-inside">http://www.slideshare.net/emmajane/git-makes-me-angry-inside</a>
+</li>
+</ul><h3>
+<a name="faq-how-to-create-a-new-repository-on-a-server" class="anchor" href="#faq-how-to-create-a-new-repository-on-a-server"><span class="octicon octicon-link"></span></a>FAQ: How to create a new repository on a server</h3>
 
 <p>Whereas with mercurial-server it is possible to create a repository on a server by simpy cloning from your machine to the server's URL, this is not possible with git: you have to manually at least create a directory on the server (with the right access-rights, e.g., for your group of developers) <em>init</em> it, and then push to it, e.g.,</p>
 
@@ -236,7 +248,41 @@ Date:   <span class="o">[</span>...<span class="o">]</span>
 <li>on your PC, link to the server and then push to it, e.g.,</li>
 </ol><p><code>git remote add origin ssh://&lt;server&gt;/var/lib/git/repo.git</code></p>
 
-<p><code>git push -u origin master</code></p>
+<p><code>git push --all origin master</code></p>
+
+<h3>
+<a name="faq-how-to-change-a-commit-log-message-after-commit-but-before-push" class="anchor" href="#faq-how-to-change-a-commit-log-message-after-commit-but-before-push"><span class="octicon octicon-link"></span></a>FAQ: How to change a commit log message after commit but before push</h3>
+
+<p><code>git commit --amend</code></p>
+
+<h3>
+<a name="how-to-merge-a-commit-from-a-branch-to-master" class="anchor" href="#how-to-merge-a-commit-from-a-branch-to-master"><span class="octicon octicon-link"></span></a>How to merge a commit from a branch to master</h3>
+
+<p>If you have committed on a branch "b1" and want to merge this into "master", you only need to switch to the master branch, merge, and then you can push master back to the central repo, e.g.,</p>
+
+<p><code>git checkout master</code></p>
+
+<p><code>git pull</code></p>
+
+<p><code>git merge b1</code></p>
+
+<p><code>git push</code></p>
+
+<p>After the merge you do not need to commit again: your changeset is already in the outgoing queue with the same metadata (author, date, log message) than the one on the branch.</p>
+
+<h3>
+<a name="how-to-permanently-remove-files-or-directories-that-have-been-committed-and-pushed" class="anchor" href="#how-to-permanently-remove-files-or-directories-that-have-been-committed-and-pushed"><span class="octicon octicon-link"></span></a>How to permanently remove files or directories that have been committed and pushed</h3>
+
+<p>When this happen and something was committed that shouldn't have been, it can be useful to be able to log on the server and make things right again.. E.g., a clear password or confidential information, a huge data file, etc. In Subversion this operation involves using svndump and filters; in Mercurial using the convert extension; and in Git it appears to be a bit touchy as it will involve commands you probably do not use everyday (gc, prune etc.).</p>
+
+<p>You can either follow the Github step-by-step tutorial here:
+<a href="https://help.github.com/articles/remove-sensitive-data">https://help.github.com/articles/remove-sensitive-data</a></p>
+
+<p>Or try solutions from the SO post below. This is what I did: I created a shell script starting from David Underhill's one: <a href="http://dound.com/2009/04/git-forever-remove-files-or-folders-from-history/">http://dound.com/2009/04/git-forever-remove-files-or-folders-from-history/</a>
+and adding the git reflog, fsck, repack, and prune commands as described in:
+<a href="http://stackoverflow.com/questions/2164581/remove-file-from-git-repository-history">http://stackoverflow.com/questions/2164581/remove-file-from-git-repository-history</a></p>
+
+<p>Please let me know if you would need my script but basically all the commands needed are already in both David blog post and the SO answer.</p>
         </section>
 
         <aside id="sidebar">
