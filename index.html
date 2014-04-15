@@ -53,17 +53,19 @@
 </ul><h2>
 <a name="how-to-use-mercurial-with-a-github-repository" class="anchor" href="#how-to-use-mercurial-with-a-github-repository"><span class="octicon octicon-link"></span></a>How to use Mercurial with a Github repository</h2>
 
-<p>You do not need to have Git installed in order to commit and push your changes back to Github. You will need Mercurial, obviously, and also the <em>Dulwhich</em> Python library and the <em>hg-git</em> extension; which installations are covered in the first step below. Once the extension has been enabled, the rest is pretty straightforward for Mercurial users: clone, commit and push as usual.</p>
+<p>You do not need to have Git installed in order to commit and push your changes back to Github. You will need Mercurial, obviously, and also the <em>Dulwhich</em> python library and the <em>hg-git</em> extension; which installations are covered in the first step below. Once the extension has been enabled, the rest is pretty straightforward for Mercurial users: clone, commit and push as usual.</p>
 
 <h3>
 <a name="download-and-install-hg-git" class="anchor" href="#download-and-install-hg-git"><span class="octicon octicon-link"></span></a>download and install hg-git</h3>
 
-<div class="highlight"><pre><span class="nv">$ </span>mkdir -p <span class="nv">$HOME</span>/.hgext
+<p>You need to install first the <a href="https://pypi.python.org/pypi/dulwich">dulwich</a> python git library, then the hg-git extension.</p>
+
+<div class="highlight highlight-sh"><pre><span class="nv">$ </span>mkdir -p <span class="nv">$HOME</span>/.hgext
 <span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$HOME</span>/.hgext
-<span class="nv">$ </span>wget http://www.samba.org/~jelmer/dulwich/dulwich-0.8.7.tar.gz
-<span class="nv">$ </span>tar zxvf dulwich-0.8.7.tar.gz
-<span class="nv">$ </span>rm dulwich-0.8.7.tar.gz
-<span class="nv">$ </span><span class="nb">cd </span>dulwich-0.8.7
+<span class="nv">$ </span>whet https://pypi.python.org/packages/source/d/dulwich/dulwich-0.9.5.tar.gz
+<span class="nv">$ </span>tar zxvf dulwich-0.9.5.tar.gz
+<span class="nv">$ </span>rm dulwich-0.9.5.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>dulwich-0.9.5
 <span class="nv">$ </span>./setup.py build
 <span class="nv">$ </span>sudo ./setup.py install
 <span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for </span>cmuller: 
@@ -78,14 +80,14 @@ running install
 <h3>
 <a name="enable-the-hg-git-extension-in-homehgrc" class="anchor" href="#enable-the-hg-git-extension-in-homehgrc"><span class="octicon octicon-link"></span></a>enable the hg-git extension in $HOME/.hgrc</h3>
 
-<div class="highlight"><pre><span class="o">[</span>extensions<span class="o">]</span>
+<div class="highlight highlight-sh"><pre><span class="o">[</span>extensions<span class="o">]</span>
 hg-git <span class="o">=</span> <span class="nv">$HOME</span>/.hgext/hg-git/hggit
 </pre></div>
 
 <h3>
 <a name="clone-the-repository-using-mercurial" class="anchor" href="#clone-the-repository-using-mercurial"><span class="octicon octicon-link"></span></a>clone the repository using Mercurial</h3>
 
-<div class="highlight"><pre><span class="nv">$ </span>hg clone git+ssh://git@github.com:cmuller/test.git
+<div class="highlight highlight-sh"><pre><span class="nv">$ </span>hg clone git+ssh://git@github.com:cmuller/test.git
 <span class="nv">$ </span><span class="nb">cd test</span>
 <span class="nv">$ </span>hg branch
 default
@@ -97,10 +99,12 @@ pulling from git+ssh://git@github.com:cmuller/test.git
 no changes found
 </pre></div>
 
+<p>Note: if the clone prints an error like <code>AttributeError: 'match' object has no attribute 'traversedir'</code>, it is a known error in Mercurial 2.6.x: please <a href="http://mercurial.selenic.com/downloads">upgrade</a> to Mercurial &gt;= 2.8.1.</p>
+
 <h3>
 <a name="commit-some-changes" class="anchor" href="#commit-some-changes"><span class="octicon octicon-link"></span></a>commit some changes</h3>
 
-<div class="highlight"><pre><span class="nv">$ </span>vi README.md 
+<div class="highlight highlight-sh"><pre><span class="nv">$ </span>vi README.md 
 <span class="nv">$ </span>hg status
 M README.md
 <span class="nv">$ </span>hg commit -m<span class="s2">"test of commit using hg"</span>
@@ -120,7 +124,7 @@ summary:     <span class="nb">test </span>of commit using hg
 <h3>
 <a name="push-your-changes-back-to-github" class="anchor" href="#push-your-changes-back-to-github"><span class="octicon octicon-link"></span></a>push your changes back to Github</h3>
 
-<div class="highlight"><pre><span class="nv">$ </span>hg push
+<div class="highlight highlight-sh"><pre><span class="nv">$ </span>hg push
 pushing to git+ssh://git@github.com:cmuller/test.git
 searching <span class="k">for </span>changes
 <span class="o">[</span><span class="s2">"git-receive-pack 'cmuller/test.git'"</span><span class="o">]</span>
@@ -131,7 +135,7 @@ searching <span class="k">for </span>changes
 <ol>
 <li>it works. see <a href="https://github.com/cmuller/test/commit/a0b9ae9aa49118a915f1784894967f8e938ccf9e">https://github.com/cmuller/test/commit/a0b9ae9aa49118a915f1784894967f8e938ccf9e</a> :-)</li>
 <li>it is interoperable with the usage of Git on the same repository. E.g.,</li>
-</ol><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /tmp
+</ol><div class="highlight highlight-sh"><pre><span class="nv">$ </span><span class="nb">cd</span> /tmp
 <span class="nv">$ </span>git clone git@github.com:cmuller/test.git
 <span class="nv">$ </span><span class="nb">cd test</span>
 <span class="nv">$ </span>git branch
@@ -288,7 +292,7 @@ and adding the git reflog, fsck, repack, and prune commands as described in:
         <aside id="sidebar">
 
 
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
         </aside>
       </div>
     </div>
